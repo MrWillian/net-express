@@ -1,11 +1,16 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'classPage' => 'pricing-page', 'activePage' => 'pricing', 'title' => __('Material Dashboard'), 'pageBackground' => asset("material").'/img/bg-pricing.jpg'])
+@extends('layouts.app', [
+  'class' => 'off-canvas-sidebar',
+  'classPage' => 'pricing-page',
+  'activePage' => 'pricing',
+  'title' => __('NeX - Signature Plans'),
+  'pageBackground' => asset("material").'/img/bg-pricing.jpg'
+])
 
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-6 ml-auto mr-auto text-center">
       <h2 class="title">{{ __('Pick the best plan for you') }}</h2>
-      <h5 class="description">{{ __('You have Free Unlimited Updates and Premium Support on each package.') }}</h5>
     </div>
   </div>
   <div class="row">
