@@ -109,6 +109,12 @@
           <p> Installations </p>
         </a>
       </li>
+      <li class="nav-item{{ $activePage == 'clients-map' ? ' active' : '' }} ">
+        <a class="nav-link" href="{{ route('page.calendar') }}">
+          <i class="material-icons">place</i>
+          <p> Clients Map </p>
+        </a>
+      </li>
       <li class="nav-item{{ $activePage == 'calendar' ? ' active' : '' }} ">
         <a class="nav-link" href="{{ route('page.calendar') }}">
           <i class="material-icons">date_range</i>
