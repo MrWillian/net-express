@@ -1,7 +1,7 @@
 @extends('layouts.app', [
-  'activePage' => 'user-management', 
-  'menuParent' => 'laravel', 
-  'titlePage' => __('User Management')
+  'activePage' => 'client-management', 
+  'menuParent' => 'registrations', 
+  'titlePage' => __('Client Management')
 ])
 
 @section('content')

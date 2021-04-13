@@ -32,11 +32,11 @@
             <i class="material-icons">fingerprint</i> {{ __('Login') }}
           </a>
         </li>
-        <li class="nav-item{{ $activePage == 'lock' ? ' active' : '' }} ">
+        {{-- <li class="nav-item{{ $activePage == 'lock' ? ' active' : '' }} ">
           <a href="{{ route('page.lock') }}" class="nav-link">
             <i class="material-icons">lock_open</i> {{ __('Lock') }}
           </a>
-        </li>
+        </li> --}}
         @auth()
           <li class="nav-item">
               <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
