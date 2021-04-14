@@ -1,7 +1,7 @@
 @extends('layouts.app', [
-  'activePage' => 'client-management', 
+  'activePage' => 'employee-management', 
   'menuParent' => 'registrations', 
-  'titlePage' => __('Client Management')
+  'titlePage' => __('Employee Management')
 ])
 
 @section('content')
@@ -14,16 +14,16 @@
                 <div class="card-icon">
                   <i class="material-icons">group</i>
                 </div>
-                <h4 class="card-title">{{ __('Clients') }}</h4>
+                <h4 class="card-title">{{ __('Employees') }}</h4>
               </div>
               <div class="card-body">
-                {{-- @can('create', App\User::class) --}}
+                @can('create', App\User::class)
                   <div class="row">
                     <div class="col-12 text-right">
-                      <a href="{{ route('client.create') }}" class="btn btn-sm btn-rose">{{ __('Add client') }}</a>
+                      <a href="{{ route('employee.create') }}" class="btn btn-sm btn-rose">{{ __('Add employee') }}</a>
                     </div>
                   </div>
-                {{-- @endcan --}}
+                @endcan
                 <div class="table-responsive">
                   <table id="datatables" class="table table-striped table-no-bordered table-hover" style="display:none">
                     <thead class="text-primary">
@@ -126,7 +126,7 @@
         responsive: true,
         language: {
           search: "_INPUT_",
-          searchPlaceholder: "Search clients",
+          searchPlaceholder: "Search employees",
         },
         "columnDefs": [
           { "orderable": false, "targets": 5 },

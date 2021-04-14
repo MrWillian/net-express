@@ -70,22 +70,22 @@
                 <span class="sidebar-normal">{{ __('Clients') }} </span>
               </a>
             </li>
-            @can('manage-users', App\User::class)
+            {{-- @can('manage-employees', App\User::class) --}}
               <li class="nav-item{{ $activePage == 'employee-management' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('user.index') }}">
+                <a class="nav-link" href="{{ route('employee.index') }}">
                   <span class="sidebar-mini"> EM </span>
                   <span class="sidebar-normal"> {{ __('Employees') }} </span>
                 </a>
               </li>
-            @endcan
-            @can('manage-users', App\User::class)
+            {{-- @endcan --}}
+            {{-- @can('manage-users', App\User::class) --}}
               <li class="nav-item{{ $activePage == 'provider-management' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('user.index') }}">
                   <span class="sidebar-mini"> PR </span>
                   <span class="sidebar-normal"> {{ __('Providers') }} </span>
                 </a>
               </li>
-            @endcan
+            {{-- @endcan --}}
             @can('manage-items', App\User::class)
               <li class="nav-item{{ $activePage == 'plan-management' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('user.index') }}">
