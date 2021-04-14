@@ -174,6 +174,9 @@
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
         <script src="{{ asset('material') }}/demo/demo.js"></script>
         <script src="{{ asset('material') }}/js/application.js"></script>
+        
+        <!--  Mask jQuery Plugin    -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
         <script>
           $(document).ready(function () {
             @if (session('status'))
@@ -189,6 +192,34 @@
                 }
               });
             @endif
+            
+            $('#input-cep').mask('00000-000');
+            $('#input-phone').mask('(00) 00000-0000');  
+            $('#input-document').mask('000.000.000-00', {reverse: true});
+          });
+          $('.datetimepicker').datetimepicker({
+            format: 'D-mm-Y',
+            icons: {
+              time: "fa fa-clock-o",
+              date: "fa fa-calendar",
+              up: "fa fa-chevron-up",
+              down: "fa fa-chevron-down",
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-screenshot',
+              clear: 'fa fa-trash',
+              close: 'fa fa-remove'
+            }
+          });
+
+          $('#personSelect').on('change', function() {
+            if (this.value === '1') {
+              $('#input-document').attr('placeholder', 'CPF');
+              $('#input-document').mask('000.000.000-00', {reverse: true});
+            } else {
+              $('#input-document').attr('placeholder', 'CNPJ');
+              $('#input-document').mask('00.000.000/0000-00', {reverse: true});
+            }
           });
         </script>
         @stack('js')
