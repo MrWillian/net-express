@@ -14,3 +14,7 @@
 Route::namespace('Client\Controllers')->group(function () {
     Route::resource('client', 'ClientController');
 });
+
+Route::namespace('Employee\Controllers')->group(function () {
+    Route::resource('employee', 'EmployeeController');
+});
