@@ -14,16 +14,16 @@
                 <div class="card-icon">
                   <i class="material-icons">group</i>
                 </div>
-                <h4 class="card-title">{{ __('Users') }}</h4>
+                <h4 class="card-title">{{ __('Clients') }}</h4>
               </div>
               <div class="card-body">
-                @can('create', App\User::class)
+                {{-- @can('create', App\User::class) --}}
                   <div class="row">
                     <div class="col-12 text-right">
-                      <a href="{{ route('user.create') }}" class="btn btn-sm btn-rose">{{ __('Add user') }}</a>
+                      <a href="{{ route('client.create') }}" class="btn btn-sm btn-rose">{{ __('Add client') }}</a>
                     </div>
                   </div>
-                @endcan
+                {{-- @endcan --}}
                 <div class="table-responsive">
                   <table id="datatables" class="table table-striped table-no-bordered table-hover" style="display:none">
                     <thead class="text-primary">
@@ -42,14 +42,14 @@
                       <th>
                         {{ __('Creation date') }}
                       </th>
-                      @can('manage-users', App\User::class)
+                      {{-- @can('manage-users', App\User::class) --}}
                         <th class="text-right">
                           {{ __('Actions') }}
                         </th>
-                      @endcan
+                      {{-- @endcan --}}
                     </thead>
                     <tbody>
-                      @foreach($users as $user)
+                      {{-- @foreach($users as $user)
                         <tr>
                           <td>
                             <div class="avatar avatar-sm rounded-circle img-circle" style="width:100px; height:100px;overflow: hidden;">
@@ -101,7 +101,7 @@
                             @endif
                           @endcan
                         </tr>
-                      @endforeach
+                      @endforeach --}}
                     </tbody>
                   </table>
                 </div>
