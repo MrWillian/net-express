@@ -1,6 +1,6 @@
 @extends('layouts.app', [
   'activePage' => 'employee-management', 
-  'menuParent' => 'registrations', 
+  'menuParent' => 'management', 
   'titlePage' => __('Employee Management')
 ])
 
