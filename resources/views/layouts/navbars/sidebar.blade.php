@@ -55,14 +55,14 @@
             <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-      <li class="nav-item {{ ($menuParent == 'laravel' || $activePage == 'dashboard') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#registrationsExample" {{ ($menuParent == 'laravel' || $activePage == 'dashboard') ? ' aria-expanded="true"' : '' }}>
+      <li class="nav-item {{ ($menuParent == 'management' || $activePage == 'dashboard') ? ' active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#management" {{ ($menuParent == 'management' || $activePage == 'dashboard') ? ' aria-expanded="true"' : '' }}>
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
-          <p>{{ __('Registrations') }}
+          <p>{{ __('Management') }}
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse {{ ($menuParent == 'dashboard' || $menuParent == 'registrations') ? ' show' : '' }}" id="registrationsExample">
+        <div class="collapse {{ ($menuParent == 'dashboard' || $menuParent == 'management') ? ' show' : '' }}" id="management">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'client-management' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('client.index') }}">
@@ -80,7 +80,7 @@
             {{-- @endcan --}}
             {{-- @can('manage-users', App\User::class) --}}
               <li class="nav-item{{ $activePage == 'provider-management' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('user.index') }}">
+                <a class="nav-link" href="{{ route('provider.index') }}">
                   <span class="sidebar-mini"> PR </span>
                   <span class="sidebar-normal"> {{ __('Providers') }} </span>
                 </a>
