@@ -104,7 +104,7 @@
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'installation-management' ? ' active' : '' }} ">
-        <a class="nav-link" href="{{ route('page.calendar') }}">
+        <a class="nav-link" href="{{ route('installation.index') }}">
           <i class="material-icons">settings</i>
           <p> Installations </p>
         </a>
