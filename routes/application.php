@@ -34,3 +34,7 @@ Route::namespace('Solicitation\Controllers')->group(function () {
 Route::namespace('Installation\Controllers')->group(function () {
     Route::resource('installation', 'InstallationController');
 });
+
+Route::namespace('ClientMap\Controllers')->group(function () {
+    Route::resource('clientMap', 'ClientMapController');
+});

@@ -110,7 +110,7 @@
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'clients-map' ? ' active' : '' }} ">
-        <a class="nav-link" href="{{ route('page.calendar') }}">
+        <a class="nav-link" href="{{ route('clientMap.index') }}">
           <i class="material-icons">place</i>
           <p> Clients Map </p>
         </a>
