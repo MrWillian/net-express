@@ -97,13 +97,13 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item{{ $activePage == 'solicitation' ? ' active' : '' }} ">
-        <a class="nav-link" href="{{ route('page.calendar') }}">
+      <li class="nav-item{{ $activePage == 'solicitation-management' ? ' active' : '' }} ">
+        <a class="nav-link" href="{{ route('solicitation.index') }}">
           <i class="material-icons">call</i>
-          <p> Solicitations </p>
+          <p> {{ __('Solicitations') }} </p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'installation' ? ' active' : '' }} ">
+      <li class="nav-item{{ $activePage == 'installation-management' ? ' active' : '' }} ">
         <a class="nav-link" href="{{ route('page.calendar') }}">
           <i class="material-icons">settings</i>
           <p> Installations </p>
