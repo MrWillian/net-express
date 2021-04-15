@@ -22,3 +22,7 @@ Route::namespace('Employee\Controllers')->group(function () {
 Route::namespace('Provider\Controllers')->group(function () {
     Route::resource('provider', 'ProviderController');
 });
+
+Route::namespace('InternetPlan\Controllers')->group(function () {
+    Route::resource('internetPlan', 'InternetPlanController');
+});

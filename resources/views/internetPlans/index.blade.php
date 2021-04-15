@@ -1,7 +1,7 @@
 @extends('layouts.app', [
-  'activePage' => 'client-management', 
+  'activePage' => 'internet-plan-management', 
   'menuParent' => 'management', 
-  'titlePage' => __('Client Management')
+  'titlePage' => __('Internet Plan Management')
 ])
 
 @section('content')
@@ -12,18 +12,18 @@
             <div class="card">
               <div class="card-header card-header-rose card-header-icon">
                 <div class="card-icon">
-                  <i class="material-icons">group</i>
+                  <i class="material-icons">timeline</i>
                 </div>
-                <h4 class="card-title">{{ __('Clients') }}</h4>
+                <h4 class="card-title">{{ __('Internet Plan') }}</h4>
               </div>
               <div class="card-body">
-                {{-- @can('create', App\User::class) --}}
+                @can('create', App\User::class)
                   <div class="row">
                     <div class="col-12 text-right">
-                      <a href="{{ route('client.create') }}" class="btn btn-sm btn-rose">{{ __('Add client') }}</a>
+                      <a href="{{ route('internetPlan.create') }}" class="btn btn-sm btn-rose">{{ __('Add internet plan') }}</a>
                     </div>
                   </div>
-                {{-- @endcan --}}
+                @endcan
                 <div class="table-responsive">
                   <table id="datatables" class="table table-striped table-no-bordered table-hover" style="display:none">
                     <thead class="text-primary">
@@ -126,7 +126,7 @@
         responsive: true,
         language: {
           search: "_INPUT_",
-          searchPlaceholder: "Search clients",
+          searchPlaceholder: "Search internet plans",
         },
         "columnDefs": [
           { "orderable": false, "targets": 5 },

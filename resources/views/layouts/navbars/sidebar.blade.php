@@ -87,10 +87,10 @@
               </li>
             {{-- @endcan --}}
             @can('manage-items', App\User::class)
-              <li class="nav-item{{ $activePage == 'plan-management' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('user.index') }}">
+              <li class="nav-item{{ $activePage == 'internet-plan-management' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('internetPlan.index') }}">
                   <span class="sidebar-mini"> PL </span>
-                  <span class="sidebar-normal"> {{ __('Plans') }} </span>
+                  <span class="sidebar-normal"> {{ __('Internet Plans') }} </span>
                 </a>
               </li>
             @endcan
