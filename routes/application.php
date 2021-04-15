@@ -30,3 +30,7 @@ Route::namespace('InternetPlan\Controllers')->group(function () {
 Route::namespace('Solicitation\Controllers')->group(function () {
     Route::resource('solicitation', 'SolicitationController');
 });
+
+Route::namespace('Installation\Controllers')->group(function () {
+    Route::resource('installation', 'InstallationController');
+});
