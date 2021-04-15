@@ -26,3 +26,7 @@ Route::namespace('Provider\Controllers')->group(function () {
 Route::namespace('InternetPlan\Controllers')->group(function () {
     Route::resource('internetPlan', 'InternetPlanController');
 });
+
+Route::namespace('Solicitation\Controllers')->group(function () {
+    Route::resource('solicitation', 'SolicitationController');
+});
