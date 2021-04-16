@@ -31,11 +31,29 @@ class ClientRequest extends FormRequest
                 'required', 'min:4'
             ],
             'email' => [
-                'required', 'email', Rule::unique((new User)->getTable())->ignore($this->route()->user->id ?? null)
+                'required', 'email', Rule::unique((new Client)->getTable())->ignore($this->route()->client->id ?? null)
             ],
-            'role_id' => [
-                'required', 'exists:'.(new Role)->getTable().',id'
-            ]
+            'phone_number' => [
+                'required', 'phone_number', Rule::unique
+            ],
+            'rg' => [
+                'required'
+            ],
+            'document' => [
+                'required'
+            ],
+            'cep' => [
+                'required'
+            ],
+            'country' => [
+                'required'
+            ],
+            'state' => [
+                'required'
+            ],
+            'city' => [
+                'required'
+            ],
         ];
     }
 
