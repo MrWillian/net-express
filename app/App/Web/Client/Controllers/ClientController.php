@@ -2,8 +2,10 @@
 
 namespace Web\Client\Controllers;
 
-use Domain\Client\Models\Client;
 use App\Http\Controllers\Controller;
+use Domain\Client\Models\Client;
+use Domain\Client\Actions\CreateClientAction;
+use Web\Client\Requests\ClientRequest;
 
 class ClientController extends Controller
 {
@@ -15,7 +17,8 @@ class ClientController extends Controller
      */
     public function index(Client $model)
     {
-        return view('clients.index');
+        $clients = app(Client::class)->get();
+        return view('clients.index', compact('clients'));
     }
 
     /**
@@ -29,20 +32,17 @@ class ClientController extends Controller
     }
 
     /**
-     * Store a newly created user in storage
+     * Store a newly created client in storage
      *
-     * @param  \App\Http\Requests\UserRequest  $request
-     * @param  \Domain\Client\Models\Client $model
+     * @param  \Web\Client\Requests\ClientRequest $request
+     * @param  \Domain\Client\Actions\CreateClientAction $action
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserRequest $request, Client $model)
+    public function store(ClientRequest $request, CreateClientAction $action)
     {
-        $model->create($request->merge([
-            'picture' => $request->photo ? $request->photo->store('profile', 'public') : null,
-            'password' => Hash::make($request->get('password'))
-        ])->all());
-
-        return redirect()->route('clients.index')->withStatus(__('Client successfully created.'));
+        dd($request);
+        $action(ClientData::fromRequest($request));
+        return redirect()->route('clients.index')->with(['success' => __('Client successfully created.')]);
     }
 
     /**
