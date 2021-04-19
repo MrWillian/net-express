@@ -1,6 +1,6 @@
 @extends('layouts.app', [
   'activePage' => 'client-management',
-  'menuParent' => 'registrations',
+  'menuParent' => 'management',
   'titlePage' => __('Client Management')
 ])
 
@@ -9,9 +9,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" enctype="multipart/form-data" action="{{ route('client.store') }}" autocomplete="off" class="form-horizontal">
-            @csrf
-            @method('post')
+          <form enctype="multipart/form-data" id="client-create-form" autocomplete="off" class="form-horizontal">
+            <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}" />
 
             <div class="card ">
               <div class="card-header card-header-rose card-header-icon">
@@ -36,15 +35,15 @@
                   </div>
                   <label class="col-sm-1 col-form-label">{{ __('Gender') }}</label>
                   <select class="col-sm-2 form-control selectpicker" data-style="btn btn-link" id="genderSelect">
-                    <option value="1">{{ __('Male') }}</option>
-                    <option value="2">{{ __('Female') }}</option>
+                    <option value="M">{{ __('Male') }}</option>
+                    <option value="F">{{ __('Female') }}</option>
                   </select>
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Email') }}&nbsp;*</label>
                   <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required />
+                      <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'email'])
                     </div>
                   </div>
@@ -60,15 +59,15 @@
                   <label class="col-sm-2 col-form-label">{{ __('RG') }}&nbsp;*</label>
                   <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('rg') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('rg') ? ' is-invalid' : '' }}" name="rg" id="input-rg" type="text" placeholder="{{ __('RG') }}" value="{{ old('rg') }}" required />
+                      <input class="form-control{{ $errors->has('rg') ? ' is-invalid' : '' }}" name="rg" id="input-rg" type="text" placeholder="{{ __('RG') }}" value="{{ old('rg') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'rg'])
                     </div>
                   </div>
-                  <label class="col-sm-1 col-form-label">{{ __('Birthdate') }}</label>
+                  <label class="col-sm-1 col-form-label">{{ __('Birthday') }}</label>
                   <div class="col-sm-3">
-                    <div class="form-group{{ $errors->has('birthdate') ? ' has-danger' : '' }}">
-                      <input type="text" class="form-control{{ $errors->has('birthdate') ? ' is-invalid' : '' }} datetimepicker" value="{{ now()->format('d-m-Y') }}"/>
-                      @include('alerts.feedback', ['field' => 'birthdate'])
+                    <div class="form-group{{ $errors->has('birthday') ? ' has-danger' : '' }}">
+                      <input type="text" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }} datetimepicker" id="birthday" />
+                      @include('alerts.feedback', ['field' => 'birthday'])
                     </div>
                   </div>
                 </div>
@@ -81,7 +80,7 @@
                   <label class="col-sm-1 col-form-label" id="labelDocument">{{ __('Document') }}&nbsp;*</label>
                   <div class="col-sm-3" id="input-group-document">
                     <div class="form-group{{ $errors->has('document') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('document') ? ' is-invalid' : '' }}" name="document" id="input-document" type="text" placeholder="{{ __('CPF') }}" value="{{ old('document') }}" />
+                      <input class="form-control{{ $errors->has('document') ? ' is-invalid' : '' }}" name="document" id="input-document" type="text" placeholder="{{ __('CPF') }}" value="{{ old('document') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'document'])
                     </div>
                   </div>
@@ -90,14 +89,14 @@
                   <label class="col-sm-2 col-form-label">{{ __('Zip') }}&nbsp;*</label>
                   <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('cep') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('cep') ? ' is-invalid' : '' }}" name="cep" id="input-cep" type="text" placeholder="{{ __('Zip') }}" value="{{ old('cep') }}" required />
+                      <input class="form-control{{ $errors->has('cep') ? ' is-invalid' : '' }}" name="cep" id="input-cep" type="text" placeholder="{{ __('Zip') }}" value="{{ old('cep') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'cep'])
                     </div>
                   </div>
                   <label class="col-sm-1 col-form-label">{{ __('Country') }}&nbsp;*</label>
                   <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('country') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" id="input-country" type="text" placeholder="{{ __('Country') }}" value="{{ old('country') }}" required />
+                      <input class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" id="input-country" type="text" placeholder="{{ __('Country') }}" value="{{ old('country') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'country'])
                     </div>
                   </div>
@@ -106,14 +105,14 @@
                   <label class="col-sm-2 col-form-label">{{ __('State') }}&nbsp;*</label>
                   <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('state') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" name="state" id="input-state" type="text" placeholder="{{ __('State') }}" value="{{ old('state') }}" required />
+                      <input class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" name="state" id="input-state" type="text" placeholder="{{ __('State') }}" value="{{ old('state') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'state'])
                     </div>
                   </div>
                   <label class="col-sm-1 col-form-label">{{ __('City') }}&nbsp;*</label>
                   <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" id="input-city" type="text" placeholder="{{ __('City') }}" value="{{ old('city') }}" required />
+                      <input class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" id="input-city" type="text" placeholder="{{ __('City') }}" value="{{ old('city') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'city'])
                     </div>
                   </div>
@@ -122,7 +121,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('District') }}&nbsp;*</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('district') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('district') ? ' is-invalid' : '' }}" name="district" id="input-district" type="text" placeholder="{{ __('District') }}" value="{{ old('district') }}" required />
+                      <input class="form-control{{ $errors->has('district') ? ' is-invalid' : '' }}" name="district" id="input-district" type="text" placeholder="{{ __('District') }}" value="{{ old('district') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'district'])
                     </div>
                   </div>
@@ -138,12 +137,12 @@
                   <label class="col-sm-1 col-form-label">{{ __('Number') }}&nbsp;*</label>
                   <div class="col-sm-3">
                     <div class="form-group{{ $errors->has('number') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('number') ? ' is-invalid' : '' }}" name="number" id="input-number" type="text" placeholder="{{ __('Number') }}" value="{{ old('number') }}" required />
+                      <input class="form-control{{ $errors->has('number') ? ' is-invalid' : '' }}" name="number" id="input-number" type="text" placeholder="{{ __('Number') }}" value="{{ old('number') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'number'])
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Location') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('location') ? ' has-danger' : '' }}">
@@ -151,7 +150,7 @@
                       @include('alerts.feedback', ['field' => 'location'])
                     </div>
                   </div>
-                </div>
+                </div> --}}
               </div>
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-rose">{{ __('Add Client') }}</button>
@@ -162,4 +161,8 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('footer-scripts')
+  @include('clients.scripts.create')
 @endsection
