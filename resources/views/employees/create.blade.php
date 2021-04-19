@@ -82,11 +82,11 @@
                       @include('alerts.feedback', ['field' => 'rg'])
                     </div>
                   </div>
-                  <label class="col-sm-1 col-form-label">{{ __('Birthdate') }}</label>
+                  <label class="col-sm-1 col-form-label">{{ __('Birthday') }}</label>
                   <div class="col-sm-2">
-                    <div class="form-group{{ $errors->has('birthdate') ? ' has-danger' : '' }}">
-                      <input type="text" class="form-control{{ $errors->has('birthdate') ? ' is-invalid' : '' }} datetimepicker" placeholder="{{ __('Birthdate') }}" />
-                      @include('alerts.feedback', ['field' => 'birthdate'])
+                    <div class="form-group{{ $errors->has('birthday') ? ' has-danger' : '' }}">
+                      <input type="text" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }} datetimepicker" placeholder="{{ __('Birthday') }}" />
+                      @include('alerts.feedback', ['field' => 'birthday'])
                     </div>
                   </div>
                 </div>
