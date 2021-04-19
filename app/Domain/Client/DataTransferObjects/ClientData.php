@@ -3,9 +3,9 @@
 namespace Domain\Client\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
-use Web\Client\Requests\ClientRequest;
+use Api\Client\Requests\ClientRequest;
 
-class ClientData extends DataTransferObjects {
+class ClientData extends DataTransferObject {
 
     /** @var string */
     public $name;
@@ -13,7 +13,7 @@ class ClientData extends DataTransferObjects {
     /** @var string */
     public $email;
 
-    /** @var date */
+    /** @var date|null */
     public $birthday;
     
     /** @var string */
@@ -22,7 +22,7 @@ class ClientData extends DataTransferObjects {
     /** @var int */
     public $client_type;
 
-    /** @var \Enums\Gender */
+    /** @var string */
     public $gender;
     
     /** @var string */
@@ -46,7 +46,7 @@ class ClientData extends DataTransferObjects {
     /** @var string */
     public $district;
 
-    /** @var string */
+    /** @var string|null */
     public $place;
 
     /** @var string */
@@ -57,11 +57,11 @@ class ClientData extends DataTransferObjects {
             'name' => $request['name'],
             'email' => $request['email'],
             'birthday' => $request['birthday'],
-            'phone_number' => $request['phone_number'],
-            'client_type' => $request['client_type'],
+            'phone_number' => str_replace([' ', '.', '-', '(', ')'], '', $request['phone_number']),
+            'client_type' => (int) $request['client_type'],
             'gender' => $request['gender'],
             'rg' => $request['rg'],
-            'document' => $request['document'],
+            'document' => strval($request['documentValue']),
             'cep' => $request['cep'],
             'country' => $request['country'],
             'state' => $request['state'],
