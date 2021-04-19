@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 100);
             $table->string('email', 128);
-            $table->date('birthday');
+            $table->date('birthday')->nullable();
             $table->string('phone_number', 20);
             $table->enum('client_type', [1, 2]);
             $table->enum('gender', ["M", "F"]);
@@ -28,7 +28,7 @@ class CreateClientsTable extends Migration
             $table->string('state', 60);
             $table->string('city', 60);
             $table->string('district', 60);
-            $table->string('place', 90);
+            $table->string('place', 90)->nullable();
             $table->string('number', 10);
 
             $table->softDeletes();
