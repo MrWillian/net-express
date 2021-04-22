@@ -177,6 +177,7 @@
         
         <!--  Mask jQuery Plugin    -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+        
         <script>
           $(document).ready(function () {
             @if (session('status'))
@@ -195,7 +196,7 @@
             
             $('#input-cep').mask('00000-000');
             $('#input-phone').mask('(00) 00000-0000');  
-            $('#input-document').mask('000.000.000-00', {reverse: true});
+            $('#input-document-value').mask('000.000.000-00', {reverse: true});
           });
           $('.datetimepicker').datetimepicker({
             format: 'D-mm-Y',
@@ -214,15 +215,16 @@
 
           $('#personSelect').on('change', function() {
             if (this.value === '1') {
-              $('#input-document').attr('placeholder', 'CPF');
-              $('#input-document').mask('000.000.000-00', {reverse: true});
+              $('#input-document-value').attr('placeholder', 'CPF');
+              $('#input-document-value').mask('000.000.000-00', {reverse: true});
             } else {
-              $('#input-document').attr('placeholder', 'CNPJ');
-              $('#input-document').mask('00.000.000/0000-00', {reverse: true});
+              $('#input-document-value').attr('placeholder', 'CNPJ');
+              $('#input-document-value').mask('00.000.000/0000-00', {reverse: true});
             }
           });
         </script>
         @stack('js')
+        @yield('footer-scripts')
 </body>
 
 </html>
