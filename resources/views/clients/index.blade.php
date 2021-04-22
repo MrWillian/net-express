@@ -4,8 +4,21 @@
   'titlePage' => __('Client Management')
 ])
 
+<?php $user = auth()->user() ?>
+
 @section('content')
   <div class="content">
+
+    @isset($success)
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="material-icons">close</i>
+        </button>
+        <span>
+          <b> Success - </b> {{ $success }}</span>
+      </div>
+    @endisset
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
@@ -17,21 +30,18 @@
                 <h4 class="card-title">{{ __('Clients') }}</h4>
               </div>
               <div class="card-body">
-                {{-- @can('create', App\User::class) --}}
+                @can('create', App\User::class)
                   <div class="row">
                     <div class="col-12 text-right">
-                      <a href="{{ route('client.create') }}" class="btn btn-sm btn-rose">{{ __('Add client') }}</a>
+                      <a href="{{ route('web.client.create') }}" class="btn btn-sm btn-rose">{{ __('Add client') }}</a>
                     </div>
                   </div>
-                {{-- @endcan --}}
+                @endcan
                 <div class="table-responsive">
                   <table id="datatables" class="table table-striped table-no-bordered table-hover" style="display:none">
                     <thead class="text-primary">
                       <th>
-                          {{ __('Photo') }}
-                      </th>
-                      <th>
-                          {{ __('Name') }}
+                        {{ __('Name') }}
                       </th>
                       <th>
                         {{ __('Email') }}
@@ -42,66 +52,47 @@
                       <th>
                         {{ __('Creation date') }}
                       </th>
-                      {{-- @can('manage-users', App\User::class) --}}
+                      @can('manage-users', App\User::class)
                         <th class="text-right">
                           {{ __('Actions') }}
                         </th>
-                      {{-- @endcan --}}
+                      @endcan
                     </thead>
                     <tbody>
-                      {{-- @foreach($users as $user)
+                      @foreach($clients as $client)
                         <tr>
                           <td>
-                            <div class="avatar avatar-sm rounded-circle img-circle" style="width:100px; height:100px;overflow: hidden;">
-                                <img src="{{ $user->profilePicture() }}" alt="" style="max-width: 100px;">
-                            </div>
+                            {{ $client['name'] }}
                           </td>
                           <td>
-                            {{ $user->name }}
+                            {{ $client['email'] }}
                           </td>
                           <td>
-                            {{ $user->email }}
+                            {{ $client['role'] }}
                           </td>
                           <td>
-                            {{ $user->role->name }}
+                            {{ $client['created_at']->format('Y-m-d') }}
                           </td>
-                          <td>
-                            {{ $user->created_at->format('Y-m-d') }}
-                          </td>
-                          @can('manage-users', App\User::class)
-                            @if (auth()->user()->can('update', $user) || auth()->user()->can('delete', $user))
-                              <td class="td-actions text-right">
-                                @if ($user->id != auth()->id())
-                                    <form action="{{ route('user.destroy', $user) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        
-                                        @can('update', $user)
-                                          <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('user.edit', $user) }}" data-original-title="" title="">
-                                            <i class="material-icons">edit</i>
-                                            <div class="ripple-container"></div>
-                                          </a>
-                                        @endcan
-                                        @can('delete', $user)
-                                          <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                              <i class="material-icons">close</i>
-                                              <div class="ripple-container"></div>
-                                          </button>
-                                        @endcan
-                                    </form>
-                                @else
-                                  @can('update', $user)
-                                    <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('profile.edit') }}" data-original-title="" title="">
-                                      <i class="material-icons">edit</i>
-                                      <div class="ripple-container"></div>
-                                    </a>
-                                  @endcan
-                                @endif
-                              </td>
-                            @endif
+                          @can('manage-clients', App\User::class)
+                            <td class="td-actions text-right">
+                              <form action="{{ route('client.destroy', $client) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                
+                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('client.edit', $user) }}" data-original-title="" title="">
+                                  <i class="material-icons">edit</i>
+                                  <div class="ripple-container"></div>
+                                </a>
+                              
+                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                    <i class="material-icons">close</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                              </form>
+                            </td>
                           @endcan
                         </tr>
-                      @endforeach --}}
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
