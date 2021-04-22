@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Domain\Client\Models\Client;
 use Domain\Client\DataTransferObjects\ClientData;
 use Domain\Client\Actions\CreateClientAction;
+use Domain\Client\Actions\DeleteClientAction;
 use Api\Client\Requests\ClientRequest;
+use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
@@ -41,12 +43,7 @@ class ClientController extends Controller
     public function store(ClientRequest $request, CreateClientAction $action)
     {
         if (isset($request->validator) && $request->validator->fails()) {
-            $errors = $this->validator($request->all())->errors()->getMessages();
-            $clientErrors = array();
-            foreach ($errors as $key => $value) {
-                $clientErrors[$key] = $value[0];
-            }
-            $response = array('status' => 'error', 'errors' => $clientErrors);
+            $response = array('status' => 'error', 'errors' => $request->validator->errors());
             return response()->json($response, 422);
         }
         $action(ClientData::fromRequest($request));
@@ -85,15 +82,15 @@ class ClientController extends Controller
     }
 
     /**
-     * Remove the specified user from storage
+     * Remove the specified client from storage
      *
-     * @param  \App\User  $user
+     * @param  \Domain\Client\Models\Client $client
+     * @param  \Domain\Client\Actions\DeleteClientAction $action
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User $user)
+    public function destroy(Client $client, DeleteClientAction $action)
     {
-        $user->delete();
-
-        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+        $action($client);
+        return redirect()->route('web.client.index')->withStatus(__('Client successfully deleted.'));
     }
 }
