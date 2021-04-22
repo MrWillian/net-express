@@ -79,9 +79,9 @@
                   </select>
                   <label class="col-sm-1 col-form-label" id="labelDocument">{{ __('Document') }}&nbsp;*</label>
                   <div class="col-sm-3" id="input-group-document">
-                    <div class="form-group{{ $errors->has('document') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('document') ? ' is-invalid' : '' }}" name="document" id="input-document" type="text" placeholder="{{ __('CPF') }}" value="{{ old('document') }}" required="true" aria-required="true" />
-                      @include('alerts.feedback', ['field' => 'document'])
+                    <div class="form-group{{ $errors->has('documentValue') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('documentValue') ? ' is-invalid' : '' }}" name="documentValue" id="input-document-value" type="text" placeholder="{{ __('CPF') }}" value="{{ old('documentValue') }}" required="true" aria-required="true" />
+                      @include('alerts.feedback', ['field' => 'documentValue'])
                     </div>
                   </div>
                 </div>
