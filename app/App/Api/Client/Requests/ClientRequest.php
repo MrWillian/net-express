@@ -59,18 +59,6 @@ class ClientRequest extends FormRequest
     }
 
     /**
-     * Get the validation attributes that apply to the request.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return [
-            'role_id' => 'role',
-        ];
-    }
-
-    /**
      * Get the error messages for the defined validation rules.
      *
      * @return array
