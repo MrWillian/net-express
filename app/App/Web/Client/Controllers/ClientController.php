@@ -12,12 +12,11 @@ class ClientController extends Controller
     /**
      * Display a listing of the clients
      *
-     * @param  \Domain\Client\Models\Client  $model
      * @return \Illuminate\View\View
      */
-    public function index(Client $model)
+    public function index()
     {
-        $clients = app(Client::class)->get();
+        $clients = Client::all();
         return view('clients.index', compact('clients'));
     }
 
