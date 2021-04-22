@@ -70,6 +70,22 @@ class ClientRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => __('A name is required.'),
+            'email.required' => __('A email is required.'),
+            'email.unique' => __('The email has already been taken.'),
+            'phone_number.required' => __('A phone number is required.'),
+            'phone_number.unique' => __('The phone number has already been taken.'),
+        ];
+    }
+
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {   
         $this->validator = $validator;
