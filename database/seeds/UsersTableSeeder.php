@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@material.com',
             'role_id' => 1,
+            'company_id' => 1,
         ]);
 
         factory(App\User::class)->create([
@@ -24,6 +25,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Creator',
             'email' => 'creator@material.com',
             'role_id' => 2,
+            'company_id' => 2,
         ]);
 
         factory(App\User::class)->create([
@@ -31,6 +33,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Member',
             'email' => 'member@material.com',
             'role_id' => 3,
+            'company_id' => 1,
         ]);
     }
 }
