@@ -61,7 +61,7 @@ class ClientData extends DataTransferObject {
             'client_type' => (int) $request['client_type'],
             'gender' => $request['gender'],
             'rg' => $request['rg'],
-            'document' => strval($request['documentValue']),
+            'document' => str_replace(['.', '-', '/'], '', strval($request['documentValue'])),
             'cep' => $request['cep'],
             'country' => $request['country'],
             'state' => $request['state'],
