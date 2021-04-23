@@ -22,7 +22,7 @@
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 text-right">
-                      <a href="{{ route('client.index') }}" class="btn btn-sm btn-rose">{{ __('Back to list') }}</a>
+                      <a href="{{ route('web.client.index') }}" class="btn btn-sm btn-rose">{{ __('Back to list') }}</a>
                   </div>
                 </div>
                 <div class="row">
@@ -49,9 +49,9 @@
                   </div>
                   <label class="col-sm-1 col-form-label">{{ __('Phone') }}</label>
                   <div class="col-sm-3">
-                    <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="text" placeholder="{{ __('Phone') }}" value="{{ old('phone') }}" />
-                      @include('alerts.feedback', ['field' => 'phone'])
+                    <div class="form-group">
+                      <input class="form-control" name="phone_number" id="input-phone-number" type="text" placeholder="{{ __('Phone') }}" value="{{ old('phone_number') }}" />
+                      @include('alerts.feedback', ['field' => 'phone_number'])
                     </div>
                   </div>
                 </div>
