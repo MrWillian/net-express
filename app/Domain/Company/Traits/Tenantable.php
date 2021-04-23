@@ -7,7 +7,7 @@ use Domain\Company\Scopes\TenantScope;
 
 trait Tenantable {
     protected static function bootTenantable() {
-        if (session()->has('company_id') && !is_null($session->get('company_id'))) {
+        if (Auth::check()) {
             static::creating(function($model) {
                 $model->company_id = session()->get('company_id');
             });
