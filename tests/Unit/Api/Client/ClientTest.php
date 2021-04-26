@@ -37,4 +37,17 @@ class ClientTest extends TestCase
         $arrayCompared = array_diff($this->columns, $client->getFillable());
         $this->assertEquals(0, count($arrayCompared));
     }
+
+    /** @test */
+    public function check_if_can_list_clients()
+    {
+        $clients = factory(Client::class, 2)->create()->map(function ($client) {
+            return $client->only($this->columns);
+        });
+
+        $this->get(route('client.index'))
+            ->assertStatus(200)
+            ->assertJson($clients->toArray())
+            ->assertJsonStructure(['*' => $this->columns]);
+    }
 }
