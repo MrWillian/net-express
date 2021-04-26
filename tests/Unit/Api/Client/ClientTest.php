@@ -50,4 +50,31 @@ class ClientTest extends TestCase
             ->assertJson($clients->toArray())
             ->assertJsonStructure(['*' => $this->columns]);
     }
+
+    public function check_if_can_create_client() {
+        $clientType = random_int(1, 2);
+        $gender = ["M", "F"];
+        $data = [
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'phone_number' => $this->faker->e164PhoneNumber,
+            'client_type' => $clientType,
+            'gender' => $gender[random_int(0, 1)],
+            'rg' => $this->faker->numberBetween(000000000000, 999999999999),
+            'documentValue' => $clientType === 1 
+                ? $this->faker->numberBetween(00000000000, 99999999999) 
+                : $this->faker->numberBetween(00000000000000, 99999999999999),
+            'cep'  => $this->faker->postcode,
+            'country' => $this->faker->country,
+            'state' => $this->faker->state,
+            'city' => $this->faker->city,
+            'district' => $this->faker->streetName,
+            'place' => $this->faker->streetAddress,
+            'number' => $this->faker->buildingNumber
+        ];
+
+        $response = $this->post(route('client.store'), $data)
+            ->assertStatus(201)
+            ->assertJson($data);
+    }
 }
