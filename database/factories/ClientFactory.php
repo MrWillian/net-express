@@ -6,14 +6,19 @@ use Domain\Client\Models\Client;
 use Faker\Generator as Faker;
 
 $factory->define(Client::class, function (Faker $faker) {
+    $clientType = random_int(1, 2);
+    $gender = ["M", "F"];
+
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'phone_number' => $faker->e164PhoneNumber,
-        'client_type' => '1',
-        'gender' => 'M',
-        'rg' => Str::random(12),
-        'document' => Str::random(11),
+        'client_type' => $clientType,
+        'gender' => $gender[random_int(0, 1)],
+        'rg' => $faker->numberBetween(000000000000, 999999999999),
+        'document' => $clientType === 1 
+            ? $faker->numberBetween(00000000000, 99999999999) 
+            : $faker->numberBetween(00000000000000, 99999999999999),
         'cep'  => $faker->postcode,
         'country' => $faker->country,
         'state' => $faker->state,
