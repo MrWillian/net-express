@@ -51,6 +51,7 @@ class ClientTest extends TestCase
             ->assertJsonStructure(['*' => $this->columns]);
     }
 
+    /** @test*/
     public function check_if_can_create_client() {
         $clientType = random_int(1, 2);
         $gender = ["M", "F"];
@@ -78,6 +79,7 @@ class ClientTest extends TestCase
             ->assertJson($data);
     }
 
+    /** @test*/
     public function check_if_can_show_client() {
         $client = factory(Client::class)->create();
         $this->get(route('client.show', $client->id))->assertStatus(200);
