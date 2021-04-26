@@ -24,8 +24,6 @@ class Client extends Model {
         'country',
         'state',
         'city',
-        'state',
-        'city',
         'district',
         'place',
         'number'
