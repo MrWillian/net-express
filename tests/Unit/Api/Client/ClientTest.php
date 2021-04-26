@@ -77,4 +77,9 @@ class ClientTest extends TestCase
             ->assertStatus(201)
             ->assertJson($data);
     }
+
+    public function check_if_can_show_client() {
+        $client = factory(Client::class)->create();
+        $this->get(route('client.show', $client->id))->assertStatus(200);
+    }
 }
