@@ -80,8 +80,8 @@ class ClientTest extends TestCase
     /** @test */
     public function check_if_can_update_client() {
         $client = factory(Client::class)->create();
-        $data = ['name' => $this->faker->name];
-        $this->put(route('client.update', $client->id), $data)->assertStatus(200)->assertJson($data);
+        $data = ['name' => $this->faker->name, 'email' => $this->faker->unique()->safeEmail];
+        $this->put(route('client.update', $client->id), $data)->assertStatus(200)->assertJson(['status' => 'success']);
     }
 
     /** @test */
