@@ -82,6 +82,16 @@ class ClientController extends Controller
     }
 
     /**
+     * Display the specified client
+     * 
+     * @param  \Domain\Client\Models\Client $client
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show(Client $client) {
+        return response()->json(array('status' => 'success', 'data' => $client), 200);
+    }
+
+    /**
      * Remove the specified client from storage
      *
      * @param  \Domain\Client\Models\Client $client
