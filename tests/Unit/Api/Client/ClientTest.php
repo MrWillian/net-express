@@ -51,7 +51,7 @@ class ClientTest extends TestCase
             ->assertJsonStructure(['*' => $this->columns]);
     }
 
-    /** @test*/
+    /** @test */
     public function check_if_can_create_client() {
         $clientType = random_int(1, 2);
         $gender = ["M", "F"];
@@ -77,20 +77,20 @@ class ClientTest extends TestCase
         $response = $this->post(route('client.store'), $data)->assertStatus(201)->assertJson($data);
     }
 
-    /** @test*/
+    /** @test */
     public function check_if_can_update_client() {
         $client = factory(Client::class)->create();
         $data = ['name' => $this->faker->name];
         $this->put(route('client.update', $client->id), $data)->assertStatus(200)->assertJson($data);
     }
 
-    /** @test*/
+    /** @test */
     public function check_if_can_show_client() {
         $client = factory(Client::class)->create();
         $this->get(route('client.show', $client->id))->assertStatus(200);
     }
 
-    /** @test*/
+    /** @test */
     public function check_if_can_delete_client() {
         $client = factory(Client::class)->create();
         $this->delete(route('client.destroy', $client->id))->assertStatus(204);
