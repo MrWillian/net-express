@@ -61,10 +61,10 @@ class ClientTest extends TestCase
             'phone_number' => $this->faker->e164PhoneNumber,
             'client_type' => $clientType,
             'gender' => $gender[random_int(0, 1)],
-            'rg' => $this->faker->numberBetween(000000000000, 999999999999),
+            'rg' => strval($this->faker->numberBetween(000000000000, 999999999999)),
             'documentValue' => $clientType === 1 
-                ? $this->faker->numberBetween(00000000000, 99999999999) 
-                : $this->faker->numberBetween(00000000000000, 99999999999999),
+                ? strval($this->faker->numberBetween(00000000000, 99999999999)) 
+                : strval($this->faker->numberBetween(00000000000000, 99999999999999)),
             'cep'  => $this->faker->postcode,
             'country' => $this->faker->country,
             'state' => $this->faker->state,
@@ -74,7 +74,7 @@ class ClientTest extends TestCase
             'number' => $this->faker->buildingNumber
         ];
 
-        $response = $this->post(route('client.store'), $data)->assertStatus(201)->assertJson($data);
+        $response = $this->post(route('client.store'), $data)->assertStatus(201)->assertJson(['status' => 'success']);
     }
 
     /** @test */
