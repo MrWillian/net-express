@@ -47,8 +47,12 @@ class ClientController extends Controller
             $response = array('status' => 'error', 'errors' => $request->validator->errors());
             return response()->json($response, 422);
         }
-        $action(ClientData::fromRequest($request));
-        return response()->json(array('status' => 'success', 'message' => __('Client successfully created.')), 201);
+        $client = $action(ClientData::fromRequest($request));
+        return response()->json(array(
+            'status' => 'success',
+            'message' => __('Client successfully created.'),
+            'data' => $client
+        ), 201);
     }
 
     /**
