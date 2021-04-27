@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Domain\Client\Models\Client;
 use Domain\Client\DataTransferObjects\ClientData;
 use Domain\Client\Actions\CreateClientAction;
+use Domain\Client\Actions\UpdateClientAction;
 use Domain\Client\Actions\DeleteClientAction;
 use Api\Client\Requests\ClientRequest;
 use Illuminate\Support\Facades\Validator;
@@ -64,21 +65,19 @@ class ClientController extends Controller
     /**
      * Update the specified user in storage
      *
-     * @param  \App\Http\Requests\UserRequest  $request
-     * @param  \App\User  $user
+     * @param  \Api\Client\Requests\ClientRequest $request
+     * @param  \Domain\Client\Models\Client $client
+     * @param  \Domain\Client\Actions\UpdateClientAction $action
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, User $user)
+    public function update(ClientRequest $request, Client $client, UpdateClientAction $action)
     {
-        $hasPassword = $request->get('password');
-        $user->update(
-            $request->merge([
-                'picture' => $request->photo ? $request->photo->store('profile', 'public') : $user->picture,
-                'password' => Hash::make($request->get('password'))
-            ])->except([$hasPassword ? '' : 'password'])
-        );
-
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        $client = $action($request->all(), $client);
+        return response()->json(array(
+            'status' => 'success',
+            'message' => __('Client successfully updated.'),
+            'data' => $client
+        ), 200);
     }
 
     /**
