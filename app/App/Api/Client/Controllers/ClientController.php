@@ -91,6 +91,6 @@ class ClientController extends Controller
     public function destroy(Client $client, DeleteClientAction $action)
     {
         $action($client);
-        return redirect()->route('web.client.index')->withStatus(__('Client successfully deleted.'));
+        return response()->json(array('status' => 'success', 'message' => __('Client successfully deleted.')), 204);
     }
 }
