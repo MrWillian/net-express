@@ -74,24 +74,25 @@ class ClientTest extends TestCase
             'number' => $this->faker->buildingNumber
         ];
 
-        $response = $this->post(route('client.store'), $data)
-            ->assertStatus(201)
-            ->assertJson($data);
+        $response = $this->post(route('client.store'), $data)->assertStatus(201)->assertJson($data);
     }
 
     /** @test*/
     public function check_if_can_update_client() {
         $client = factory(Client::class)->create();
         $data = ['name' => $this->faker->name];
-
-        $this->put(route('client.update', $client->id), $data)
-            ->assertStatus(200)
-            ->assertJson($data);
+        $this->put(route('client.update', $client->id), $data)->assertStatus(200)->assertJson($data);
     }
 
     /** @test*/
     public function check_if_can_show_client() {
         $client = factory(Client::class)->create();
         $this->get(route('client.show', $client->id))->assertStatus(200);
+    }
+
+    /** @test*/
+    public function check_if_can_delete_client() {
+        $client = factory(Client::class)->create();
+        $this->delete(route('client.destroy', $client->id))->assertStatus(204);
     }
 }
