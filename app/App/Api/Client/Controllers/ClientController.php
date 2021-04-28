@@ -20,7 +20,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = app(Client::class)->get();
+        $clients = app(Client::class)::orderBy('id', 'DESC')->get();
         return $clients;
     }
 
