@@ -41,14 +41,19 @@ class ClientTest extends TestCase
     /** @test */
     public function check_if_can_list_clients()
     {
-        $clients = factory(Client::class, 2)->create()->map(function ($client) {
+        $clients = factory(Client::class, 2)->create()->map(function ($client, $index) {
+            $client->id = $index + 1;
+            array_push($this->columns, 'id');
             return $client->only($this->columns);
+        });
+        $sortedClients = $clients->toArray();
+
+        usort($sortedClients, function($a, $b) {
+            return $b['id'] <=> $a['id'];
         });
 
         $this->get(route('client.index'))
-            ->assertStatus(200)
-            ->assertJson($clients->toArray())
-            ->assertJsonStructure(['*' => $this->columns]);
+            ->assertStatus(200)->assertJson($sortedClients)->assertJsonStructure(['*' => $this->columns]);
     }
 
     /** @test */
