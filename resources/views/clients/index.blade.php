@@ -75,16 +75,15 @@
                           </td>
                           @can('manage-clients', App\User::class)
                             <td class="td-actions text-right">
-                              <form action="{{ route('client.destroy', $client) }}" method="post">
-                                @csrf
-                                @method('delete')
+                              <form id="{{$client['id']}}" class="delete-client">
+                                <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}" />
                                 
                                 <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('client.edit', $user) }}" data-original-title="" title="">
                                   <i class="material-icons">edit</i>
                                   <div class="ripple-container"></div>
                                 </a>
                               
-                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                <button type="submit" class="btn btn-danger btn-link" data-original-title="" title="">
                                     <i class="material-icons">close</i>
                                     <div class="ripple-container"></div>
                                 </button>
@@ -102,6 +101,7 @@
       </div>
     </div>
   </div>
+  <div class="modal"></div>
 @endsection
 
 @push('js')
@@ -126,3 +126,7 @@
     });
   </script>
 @endpush
+
+@section('footer-scripts')
+  @include('clients.scripts.delete')
+@endsection
