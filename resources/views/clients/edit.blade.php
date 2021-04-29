@@ -25,8 +25,8 @@
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Name') }}&nbsp;*</label>
                   <div class="col-sm-4">
-                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name', $client->name) }}" required="true" aria-required="true"/>
+                    <div class="form-group">
+                      <input class="form-control" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name', $client->name) }}" required="true" aria-required="true"/>
                       @include('alerts.feedback', ['field' => 'name'])
                     </div>
                   </div>
@@ -39,31 +39,31 @@
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Email') }}&nbsp;*</label>
                   <div class="col-sm-3">
-                    <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email', $client->email) }}" required />
+                    <div class="form-group">
+                      <input class="form-control" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email', $client->email) }}" required />
                       @include('alerts.feedback', ['field' => 'email'])
                     </div>
                   </div>
                   <label class="col-sm-1 col-form-label">{{ __('Phone') }}</label>
                   <div class="col-sm-3">
-                    <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="text" placeholder="{{ __('Phone') }}" value="{{ old('phone', $client->phone) }}" />
-                      @include('alerts.feedback', ['field' => 'phone'])
+                    <div class="form-group">
+                      <input class="form-control" name="phone_number" id="input-phone" type="text" placeholder="{{ __('Phone') }}" value="{{ old('phone_number', $client->phone_number) }}" />
+                      @include('alerts.feedback', ['field' => 'phone_number'])
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('RG') }}&nbsp;*</label>
                   <div class="col-sm-3">
-                    <div class="form-group{{ $errors->has('rg') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('rg') ? ' is-invalid' : '' }}" name="rg" id="input-rg" type="text" placeholder="{{ __('RG') }}" value="{{ old('rg', $client->rg) }}" required />
+                    <div class="form-group">
+                      <input class="form-control" name="rg" id="input-rg" type="text" placeholder="{{ __('RG') }}" value="{{ old('rg', $client->rg) }}" required />
                       @include('alerts.feedback', ['field' => 'rg'])
                     </div>
                   </div>
                   <label class="col-sm-1 col-form-label">{{ __('Birthday') }}</label>
                   <div class="col-sm-3">
-                    <div class="form-group{{ $errors->has('birthday') ? ' has-danger' : '' }}">
-                      <input type="text" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }} datetimepicker" value="{{ $client->phone }}"/>
+                    <div class="form-group">
+                      <input type="text" class="form-control datetimepicker" value="{{ $client->birthday }}"/>
                       @include('alerts.feedback', ['field' => 'birthday'])
                     </div>
                   </div>
@@ -71,13 +71,13 @@
                 <div class="row">
                   <label for="personSelect" class="col-sm-2 col-form-label">Person</label>
                   <select class="col-sm-3 form-control selectpicker" data-style="btn btn-link" id="personSelect">
-                    <option value="1" {{ $client->type === 1 ? 'selected' : '' }}>{{ __('Physical Person') }}</option>
-                    <option value="2" {{ $client->type === 2 ? 'selected' : '' }}>{{ __('Legal Person') }}</option>
+                    <option value="1" {{ $client->client_type === "1" ? 'selected' : '' }}>{{ __('Physical Person') }}</option>
+                    <option value="2" {{ $client->client_type === "2" ? 'selected' : '' }}>{{ __('Legal Person') }}</option>
                   </select>
                   <label class="col-sm-1 col-form-label" id="labelDocument">{{ __('Document') }}&nbsp;*</label>
                   <div class="col-sm-3" id="input-group-document">
                     <div class="form-group{{ $errors->has('document') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('document') ? ' is-invalid' : '' }}" name="document" id="input-document" type="text" placeholder="{{ __('CPF') }}" value="{{ old('document', $client->document) }}" />
+                      <input class="form-control{{ $errors->has('document') ? ' is-invalid' : '' }}" name="document" id="input-document-value" type="text" placeholder="{{ __('CPF') }}" value="{{ old('document', $client->document) }}" />
                       @include('alerts.feedback', ['field' => 'document'])
                     </div>
                   </div>
@@ -136,15 +136,6 @@
                     <div class="form-group{{ $errors->has('number') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('number') ? ' is-invalid' : '' }}" name="number" id="input-number" type="text" placeholder="{{ __('Number') }}" value="{{ old('number', $client->number) }}" required />
                       @include('alerts.feedback', ['field' => 'number'])
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Location') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('location') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" name="location" id="input-location" type="text" placeholder="{{ __('Location') }}" value="{{ old('location', $client->location) }}" />
-                      @include('alerts.feedback', ['field' => 'location'])
                     </div>
                   </div>
                 </div>
