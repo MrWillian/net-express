@@ -35,7 +35,7 @@
                         }
                     }).then((result) => {
                         if (result) {
-                            window.history.back();
+                            window.location.href = "{{route('web.client.index')}}";
                         }
                     });
                 }
