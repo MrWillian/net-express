@@ -78,7 +78,7 @@
                               <form id="{{$client['id']}}" class="delete-client">
                                 <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}" />
                                 
-                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('client.edit', $user) }}" data-original-title="" title="">
+                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('client.edit', $user) }}" data-original-title="edit" title="edit">
                                   <i class="material-icons">edit</i>
                                   <div class="ripple-container"></div>
                                 </a>
