@@ -161,6 +161,7 @@
       </div>
     </div>
   </div>
+  <div class="modal"></div>
 @endsection
 
 @section('footer-scripts')
