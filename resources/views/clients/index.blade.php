@@ -83,7 +83,7 @@
                                   <div class="ripple-container"></div>
                                 </a>
                               
-                                <button type="submit" class="btn btn-danger btn-link" data-original-title="" title="">
+                                <button type="submit" class="btn btn-danger btn-link" data-original-title="Delete" title="Delete">
                                     <i class="material-icons">close</i>
                                     <div class="ripple-container"></div>
                                 </button>
