@@ -41,7 +41,6 @@
                 }
             },
             error: function (xhr) {
-                console.log('errors', (xhr.responseJSON));
                 $.each(xhr.responseJSON.errors, function(field_name, error) {
                     $(document).find('[name='+field_name+']').parent().addClass('has-danger');
                     $(document).find('[name='+field_name+']').addClass('is-invalid');
