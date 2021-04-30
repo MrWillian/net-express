@@ -56,7 +56,6 @@ class ClientData extends DataTransferObject {
         return new Self([
             'name' => $request['name'],
             'email' => $request['email'],
-            'birthday' => $request['birthday'],
             'phone_number' => str_replace([' ', '.', '-', '(', ')'], '', $request['phone_number']),
             'client_type' => (int) $request['client_type'],
             'gender' => $request['gender'],
