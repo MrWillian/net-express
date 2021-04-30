@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="{{ asset('material') }}/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard PRO Laravel by Creative Tim
+    Net Express System - NeX
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="{{ asset('material') }}/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="{{ asset('css') }}/web.css" rel="stylesheet" />
   <link href="{{ asset('css') }}/block-page.css" rel="stylesheet" />
 </head>
 <body class="{{ $class ?? '' }}">
