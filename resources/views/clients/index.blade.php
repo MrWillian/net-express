@@ -47,7 +47,10 @@
                         {{ __('Email') }}
                       </th>
                       <th>
-                        {{ __('Role') }}
+                        {{ __('Phone') }}
+                      </th>
+                      <th>
+                        {{ __('District') }}
                       </th>
                       <th>
                         {{ __('Creation date') }}
@@ -68,10 +71,13 @@
                             {{ $client['email'] }}
                           </td>
                           <td>
-                            {{ $client['role'] }}
+                            {{ $client['phone_number'] }}
                           </td>
                           <td>
-                            {{ $client['created_at']->format('Y-m-d') }}
+                            {{ $client['district'] }}
+                          </td>
+                          <td>
+                            {{ $client['created_at']->format('d-m-Y') }}
                           </td>
                           @can('manage-clients', App\User::class)
                             <td class="td-actions text-right">
