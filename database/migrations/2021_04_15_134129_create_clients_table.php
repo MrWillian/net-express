@@ -20,7 +20,7 @@ class CreateClientsTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('phone_number', 20);
             $table->enum('client_type', [1, 2]);
-            $table->enum('gender', ["M", "F"]);
+            $table->enum('gender', ["M", "F"])->nullable();
             $table->string('rg', 12);
             $table->string('document', 18);
             $table->string('cep', 11);
