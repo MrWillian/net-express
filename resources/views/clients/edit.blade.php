@@ -33,7 +33,7 @@
                   <label class="col-sm-1 col-form-label">{{ __('Gender') }}</label>
                   <select class="col-sm-2 form-control selectpicker" data-style="btn btn-link" id="genderSelect">
                     <option value="1" {{ $client->gender === "M" ? 'selected' : '' }}>{{ __('Male') }}</option>
-                    <option value="2" {{ $client->client_type === "F" ? 'selected' : '' }}>{{ __('Female') }}</option>
+                    <option value="2" {{ $client->gender === "F" ? 'selected' : '' }}>{{ __('Female') }}</option>
                   </select>
                 </div>
                 <div class="row">
