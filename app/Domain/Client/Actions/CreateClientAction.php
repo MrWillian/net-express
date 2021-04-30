@@ -10,7 +10,6 @@ final class CreateClientAction {
         return Client::create([
             'name' => $clientData->name,
             'email' => $clientData->email,
-            'birthday' => $clientData->birthday,
             'phone_number' => $clientData->phone_number,
             'client_type' => $clientData->client_type,
             'gender' => $clientData->gender,
