@@ -37,9 +37,6 @@ class ClientRequest extends FormRequest
             'phone_number' => [
                 'required', 'unique:clients'
             ],
-            'rg' => [
-                'required'
-            ],
             'documentValue' => [
                 'required'
             ],
