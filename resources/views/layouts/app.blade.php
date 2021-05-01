@@ -199,9 +199,15 @@
                 if ($('#input-document-value').val().length > 11) {
                     $('#input-document-value').attr('placeholder', 'CNPJ');
                     $('#input-document-value').mask('00.000.000/0000-00', {reverse: true});
+                    $('#rg-gender-row').hide();
+                    $('#input-rg').attr('required', false);
+                    $('#input-rg').attr('aria-required', false);
                 } else {
                     $('#input-document-value').attr('placeholder', 'CPF');
                     $('#input-document-value').mask('000.000.000-00', {reverse: true});
+                    $('#rg-gender-row').show();
+                    $('#input-rg').attr('required', true);
+                    $('#input-rg').attr('aria-required', true);
                 }
             });
             $('.datetimepicker').datetimepicker({
