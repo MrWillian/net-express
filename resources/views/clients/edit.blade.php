@@ -28,7 +28,7 @@
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label custom-label">{{ __('Name') }}&nbsp;*</label>
-                  <div class="col-sm-4">
+                  <div class="col-sm-7">
                     <div class="form-group">
                       <input class="form-control" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name', $client->name) }}" required="true" aria-required="true"/>
                       @include('alerts.feedback', ['field' => 'name'])
@@ -51,7 +51,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" id="rg-gender-row">
                   <label class="col-sm-2 col-form-label custom-label">{{ __('RG') }}&nbsp;*</label>
                   <div class="col-sm-3">
                     <div class="form-group">
