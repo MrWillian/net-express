@@ -2,6 +2,7 @@
 
 namespace Api\Client\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Domain\Client\Models\Client;
 use Domain\Client\DataTransferObjects\ClientData;
@@ -9,7 +10,8 @@ use Domain\Client\Actions\CreateClientAction;
 use Domain\Client\Actions\UpdateClientAction;
 use Domain\Client\Actions\DeleteClientAction;
 use Api\Client\Requests\ClientRequest;
-use Illuminate\Support\Facades\Validator;
+use Api\Client\Services\ClientService;
+use Api\Client\Exceptions\ClientNotFoundException;
 
 class ClientController extends Controller
 {
@@ -90,7 +92,12 @@ class ClientController extends Controller
      * @param  \Domain\Client\Models\Client $client
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(Client $client) {
+    public function show($id) {
+        try {
+            $client = (new ClientService)->findClientById($id);
+        } catch(ClientNotFoundException $exception) {
+            return response()->json(array('error' => $exception->getMessage()), 404);
+        }
         return response()->json(array('status' => 'success', 'data' => $client), 200);
     }
 
