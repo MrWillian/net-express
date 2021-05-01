@@ -36,10 +36,11 @@ class ClientController extends Controller
     public function store(ClientRequest $request, CreateClientAction $action)
     {
         if (isset($request->validator) && $request->validator->fails()) {
-            $response = array('status' => 'error', 'errors' => $request->validator->errors());
-            return response()->json($response, 422);
+            return response()->json(array('status' => 'error', 'errors' => $request->validator->errors()), 422);
         }
+
         $client = $action(ClientData::fromRequest($request));
+
         return response()->json(array(
             'status' => 'success',
             'message' => __('Client successfully created.'),
