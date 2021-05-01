@@ -27,16 +27,6 @@ class ClientController extends Controller
     }
 
     /**
-     * Show the form for creating a new client
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('clients.create');
-    }
-
-    /**
      * Store a newly created client in storage
      *
      * @param  \Api\Client\Requests\ClientRequest $request
@@ -55,17 +45,6 @@ class ClientController extends Controller
             'message' => __('Client successfully created.'),
             'data' => $client
         ), 201);
-    }
-
-    /**
-     * Show the form for editing the specified client
-     *
-     * @param  \Domain\Client\Models\Client $client
-     * @return \Illuminate\View\View
-     */
-    public function edit(Client $client)
-    {
-        return view('clients.edit', ['client' => $client->load('role')]);
     }
 
     /**
