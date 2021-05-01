@@ -50,15 +50,15 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" id="rg-gender-row">
                   <label class="col-sm-2 col-form-label custom-label">{{ __('RG') }}&nbsp;*</label>
                   <div class="col-sm-3">
-                    <div class="form-group{{ $errors->has('rg') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('rg') ? ' is-invalid' : '' }}" name="rg" id="input-rg" type="text" placeholder="{{ __('RG') }}" value="{{ old('rg') }}" required="true" aria-required="true" />
+                    <div class="form-group">
+                      <input class="form-control" name="rg" id="input-rg" type="text" placeholder="{{ __('RG') }}" value="{{ old('rg') }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'rg'])
                     </div>
                   </div>
-                  <label class="col-sm-1 col-form-label custom-label">{{ __('Gender') }}</label>
+                  <label class="col-sm-1 col-form-label custom-label" id="gender-label">{{ __('Gender') }}</label>
                   <select class="col-sm-2 form-control selectpicker" data-style="btn btn-link" id="genderSelect">
                     <option value="M">{{ __('Male') }}</option>
                     <option value="F">{{ __('Female') }}</option>
