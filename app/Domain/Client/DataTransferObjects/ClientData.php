@@ -22,10 +22,10 @@ class ClientData extends DataTransferObject {
     /** @var int */
     public $client_type;
 
-    /** @var string */
+    /** @var string|null */
     public $gender;
     
-    /** @var string */
+    /** @var string|null */
     public $rg;
 
     /** @var string */
@@ -58,8 +58,8 @@ class ClientData extends DataTransferObject {
             'email' => $request['email'],
             'phone_number' => str_replace([' ', '.', '-', '(', ')'], '', $request['phone_number']),
             'client_type' => (int) $request['client_type'],
-            'gender' => $request['gender'],
-            'rg' => $request['rg'],
+            'gender' =>  $request['client_type'] === 1 ? $request['gender'] : null,
+            'rg' => $request['client_type'] === 1 ? $request['rg'] : null,
             'document' => str_replace(['.', '-', '/'], '', strval($request['documentValue'])),
             'cep' => $request['cep'],
             'country' => $request['country'],
