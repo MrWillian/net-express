@@ -12,9 +12,11 @@
 */
 
 Route::namespace('Client\Controllers')->group(function () {
-    Route::get('client', 'ClientController@index')->name('web.client.index');
-    Route::get('client/create', 'ClientController@create')->name('web.client.create');
-    Route::get('client/{client}/edit', 'ClientController@edit')->name('web.client.edit');
+    Route::middleware(['auth'])->group(function(){
+        Route::get('client', 'ClientController@index')->name('web.client.index');
+        Route::get('client/create', 'ClientController@create')->name('web.client.create');
+        Route::get('client/{client}/edit', 'ClientController@edit')->name('web.client.edit');
+    });
 });
 
 Route::namespace('Employee\Controllers')->group(function () {
