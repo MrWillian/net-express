@@ -75,4 +75,15 @@ class UserPolicy
     {
         return $user->isAdmin() || $user->isCreator();
     }
+
+    /**
+     * Determine whether the authenticate user can manage clients.
+     *
+     * @param  \App\User $user
+     * @return boolean
+     */
+    public function manageClients(User $user)
+    {
+        return $user->isAdmin();
+    }
 }

@@ -23,4 +23,8 @@ class HomeController extends Controller
     {
         return view('pages.dashboard');
     }
+
+    public function welcome() {
+        return view('pages.welcome');
+    }
 }

@@ -65,7 +65,7 @@
         <div class="collapse {{ ($menuParent == 'dashboard' || $menuParent == 'management') ? ' show' : '' }}" id="management">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'client-management' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('client.index') }}">
+              <a class="nav-link" href="{{ route('web.client.index') }}">
                 <span class="sidebar-mini"> CL </span>
                 <span class="sidebar-normal">{{ __('Clients') }} </span>
               </a>
