@@ -9,9 +9,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" enctype="multipart/form-data" action="{{ route('client.update', $client) }}" autocomplete="off" class="form-horizontal">
-            @csrf
-            @method('put')
+          <form enctype="multipart/form-data" id="client-edit-form" autocomplete="off" class="form-horizontal">
+            <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}" />
+            <input type="hidden" name="client-id" id="client-id" value="{{$client->id}}" />
 
             <div class="card ">
               <div class="card-header card-header-rose card-header-icon">
@@ -81,7 +81,7 @@
                   <label class="col-sm-1 col-form-label custom-label" id="labelDocument">{{ __('Document') }}&nbsp;*</label>
                   <div class="col-sm-3" id="input-group-document">
                     <div class="form-group{{ $errors->has('document') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('document') ? ' is-invalid' : '' }}" name="document" id="input-document-value" type="text" placeholder="{{ __('CPF') }}" value="{{ old('document', $client->document) }}" />
+                      <input class="form-control{{ $errors->has('document') ? ' is-invalid' : '' }}" name="document" id="input-document-value" type="text" placeholder="{{ __('CPF') }}" value="{{ old('document', $client->document) }}" required="true" aria-required="true" />
                       @include('alerts.feedback', ['field' => 'document'])
                     </div>
                   </div>
@@ -153,4 +153,9 @@
       </div>
     </div>
   </div>
+  <div class="modal"></div>
+@endsection
+
+@section('footer-scripts')
+  @include('clients.scripts.edit')
 @endsection
