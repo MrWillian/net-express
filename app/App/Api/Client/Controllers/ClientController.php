@@ -58,7 +58,12 @@ class ClientController extends Controller
      */
     public function update(ClientRequest $request, Client $client, UpdateClientAction $action)
     {
-        $client = $action($request->all(), $client);
+        try {
+            $client = $action($request->all(), $client);
+        } catch (Exception $exception) {
+            return response()->json(['status' => 'error', 'message' => $exception->message], 500);
+        }
+
         return response()->json(array(
             'status' => 'success',
             'message' => __('Client successfully updated.'),
