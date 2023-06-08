@@ -7,6 +7,9 @@ Bem-vindo ao repositório do sistema web de gerenciamento de provedores de inter
 - [ScreenShots](#screenshots)
 - [Instalação](#instalação)
 - [Executando o Projeto com Docker](#executando-o-projeto-com-docker)
+    - Imagens Docker
+        1. [php:7.3.6-fpm-alpine3.9](#php736-fpm-alpine39)
+        2. [PostgreSQL](#postgresql)
 - [Executando Testes](#executando-testes)
 
 
@@ -94,6 +97,68 @@ Para começar, siga os passos abaixo para clonar o repositório e instalar as de
 ## Executando o Projeto com Docker
 
 Este projeto pode ser executado facilmente utilizando o Docker Compose. Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.
+
+### php:7.3.6-fpm-alpine3.9
+- Versão: 7.3.6
+- Descrição: Esta imagem Docker fornece um ambiente PHP para executar o aplicativo Laravel. Ela é baseada na distribuição Alpine Linux, que é conhecida por sua leveza e segurança. O FPM (FastCGI Process Manager) é utilizado para processar solicitações PHP.
+
+- Comandos Docker:
+  - `FROM php:7.3.6-fpm-alpine3.9`: Define a imagem base a ser utilizada.
+  - `RUN apk add --no-cache openssl bash nodejs npm postgresql-dev`: Instala as dependências necessárias para o projeto. Inclui o OpenSSL, o Bash, o Node.js, o npm e o postgresql-dev.
+  - `RUN docker-php-ext-install bcmath pdo pdo_pgsql`: Instala as extensões PHP necessárias para o projeto, incluindo bcmath, pdo e pdo_pgsql.
+  - `WORKDIR /var/www`: Define o diretório de trabalho para `/var/www`.
+  - `RUN rm -rf /var/www/html && ln -s public html`: Remove o diretório `/var/www/html` e cria um link simbólico chamado `html` que aponta para a pasta `public`, conforme esperado pelo Laravel.
+  - `RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer`: Instala o Composer, uma ferramenta de gerenciamento de pacotes PHP.
+  - `COPY . /var/www`: Copia todos os arquivos do diretório atual para o diretório `/var/www` no contêiner.
+  - `RUN chmod -R 777 /var/www/storage`: Define permissões de escrita para a pasta de armazenamento do Laravel.
+  - `EXPOSE 9000`: Expõe a porta 9000, que é a porta padrão para o serviço PHP-FPM.
+  - `ENTRYPOINT [ "php-fpm" ]`: Define o comando padrão a ser executado quando o contêiner for iniciado.
+
+### PostgreSQL
+- Versão: Mais recente
+- Descrição: O PostgreSQL é um sistema de gerenciamento de banco de dados relacional de código aberto amplamente utilizado. É uma escolha comum para projetos Laravel devido à sua compatibilidade e recursos avançados.
+
+- Comandos Docker (docker-compose.yml):
+  - `image: postgres`: Define a imagem oficial do PostgreSQL a ser utilizada.
+  - `environment`:
+    - `POSTGRES_USER`: Define o nome de usuário para o banco de dados.
+    - `POSTGRES_PASSWORD`: Define a senha para o usuário do banco de dados.
+    - `POSTGRES_DB`: Define o nome do banco de dados a ser criado.
+
+Essas são as principais imagens Docker utilizadas no projeto.
+
+`docker-compose.yml`:
+
+1. [web](#web)
+2. [db](#db)
+3. [nginx](#nginx)
+
+### web
+- Descrição: Este serviço representa o contêiner do aplicativo web Laravel.
+- Comandos Docker:
+  - `build: .`: Constrói a imagem do contêiner com base no Dockerfile presente no diretório atual.
+  - `volumes: - ./:/var/www/`: Monta o diretório atual (onde está o código do projeto) no diretório `/var/www/` do contêiner.
+  - `depends_on: - db`: Especifica que o serviço `web` depende do serviço `db`.
+  - `restart: always`: Garante que o contêiner seja reiniciado sempre que ocorrer uma falha ou quando o Docker daemon for reiniciado.
+
+### db
+- Descrição: Este serviço representa o contêiner do banco de dados PostgreSQL.
+- Comandos Docker:
+  - `image: postgres:12.0-alpine`: Utiliza a imagem oficial do PostgreSQL versão 12.0 no Alpine Linux.
+  - `restart: always`: Garante que o contêiner seja reiniciado sempre que ocorrer uma falha ou quando o Docker daemon for reiniciado.
+  - `environment: POSTGRES_PASSWORD, POSTGRES_DB`: Define as variáveis de ambiente para configurar a senha e o nome do banco de dados do PostgreSQL.
+  - `volumes: - "./.docker/dbdata:/var/lib/postgresql/data"`: Monta o diretório local `.docker/dbdata` no diretório `/var/lib/postgresql/data` do contêiner, para persistir os dados do banco de dados.
+
+### nginx
+- Descrição: Este serviço representa o contêiner do servidor web Nginx.
+- Comandos Docker:
+  - `build: ./.docker/nginx`: Constrói a imagem do contêiner com base no Dockerfile presente no diretório `.docker/nginx`.
+  - `restart: always`: Garante que o contêiner seja reiniciado sempre que ocorrer uma falha ou quando o Docker daemon for reiniciado.
+  - `ports: - "8000:80"`: Mapeia a porta 8000 do host para a porta 80 do contêiner, permitindo o acesso ao aplicativo Laravel através do endereço `http://localhost:8000`.
+  - `volumes: - ./:/var/www`: Monta o diretório atual (onde está o código do projeto) no diretório `/var/www` do contêiner.
+  - `depends_on: - web`: Especifica que o serviço `nginx` depende do serviço `web`.
+
+Essas são as configurações principais presentes no arquivo `docker-compose.yml` para o projeto.
 
 1. Clone o repositório como mencionado anteriormente.
 
