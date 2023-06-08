@@ -3,11 +3,39 @@
 Bem-vindo ao repositório do sistema web de gerenciamento de provedores de internet! Este projeto é desenvolvido em Laravel e permite cadastrar, editar e deletar clientes, funcionários, provedores, planos de internet, chamados e instalações.
 
 ## Índice
-- [Instalação](#instalação)
+- [Descrição](#descrição)
 - [ScreenShots](#screenshots)
+- [Instalação](#instalação)
 - [Executando o Projeto com Docker](#executando-o-projeto-com-docker)
 - [Executando Testes](#executando-testes)
-- [Descrição](#descrição)
+
+
+## Descrição
+
+O Laravel é um framework PHP de código aberto, conhecido por sua elegância, simplicidade e poder. Ele segue uma abordagem de desenvolvimento baseada em convenções, facilitando a criação de aplicativos web de alta qualidade com uma curva de aprendizado mínima.
+
+Alguns benefícios do Laravel incluem:
+
+- **Estrutura MVC**: O Laravel segue o padrão arquitetural Model-View-Controller (MVC), que separa a lógica de negócios, a apresentação e a manipulação de dados em componentes independentes. Isso permite uma melhor organização e manutenção do código.
+
+- **ORM Eloquent**: O Laravel possui um ORM (Object-Relational Mapping) chamado Eloquent, que simplifica a interação com o banco de dados. Ele permite que você defina modelos PHP que mapeiam diretamente para tabelas do banco de dados, facilitando as operações de consulta, inserção, atualização e exclusão de registros.
+
+- **Sistema de Rotas**: O Laravel oferece um sistema de roteamento flexível e poderoso. Com ele, você pode definir facilmente as rotas para suas páginas, controladores e ações, tornando a navegação em seu aplicativo mais clara e intuitiva.
+
+- **Migrações de Banco de Dados**: O Laravel fornece migrações de banco de dados, permitindo que você defina e mantenha a estrutura do banco de dados em código. Isso facilita a colaboração entre desenvolvedores e a implantação consistente do esquema do banco de dados em diferentes ambientes.
+
+Este projeto utiliza o template Material Dashboard Pro Laravel da Creative-Tim, que fornece uma interface de usuário moderna e responsiva com componentes pré-estilizados. O uso desse template ajuda a acelerar o desenvolvimento, fornecendo um conjunto de recursos e estilos pré-configurados.
+
+Se tiver alguma dúvida ou feedback, não hesite em entrar em contato.
+
+## ScreenShots
+
+![login - NET Express](https://github.com/MrWillian/net-express/assets/50757994/8b4ac223-29b4-461e-8a60-0c4551a18507)
+![register](https://github.com/MrWillian/net-express/assets/50757994/1a92945d-7d98-4b99-a0a0-c6cb4f313794)
+![dashboard](https://github.com/MrWillian/net-express/assets/50757994/75fd1217-95c1-431f-8397-b19347f42f0d)
+![clients](https://github.com/MrWillian/net-express/assets/50757994/6e6cb39d-2c7c-4e27-9642-c17d72edf4f7)
+![register-client](https://github.com/MrWillian/net-express/assets/50757994/2a077018-3a14-4ed4-9b09-0edb1a45a73b)
+
 
 ## Instalação
 
@@ -62,14 +90,6 @@ Para começar, siga os passos abaixo para clonar o repositório e instalar as de
 
 9. Acesse o aplicativo em seu navegador através do endereço `http://localhost:8000`.
 
-## ScreenShots
-
-![login - NET Express](https://github.com/MrWillian/net-express/assets/50757994/8b4ac223-29b4-461e-8a60-0c4551a18507)
-![register](https://github.com/MrWillian/net-express/assets/50757994/1a92945d-7d98-4b99-a0a0-c6cb4f313794)
-![dashboard](https://github.com/MrWillian/net-express/assets/50757994/75fd1217-95c1-431f-8397-b19347f42f0d)
-![clients](https://github.com/MrWillian/net-express/assets/50757994/6e6cb39d-2c7c-4e27-9642-c17d72edf4f7)
-![register-client](https://github.com/MrWillian/net-express/assets/50757994/2a077018-3a14-4ed4-9b09-0edb1a45a73b)
-
 
 ## Executando o Projeto com Docker
 
@@ -106,20 +126,3 @@ Este projeto inclui testes automatizados para garantir a qualidade e a estabilid
 
 ibirá os resultados no terminal.
 
-## Descrição
-
-O Laravel é um framework PHP de código aberto, conhecido por sua elegância, simplicidade e poder. Ele segue uma abordagem de desenvolvimento baseada em convenções, facilitando a criação de aplicativos web de alta qualidade com uma curva de aprendizado mínima.
-
-Alguns benefícios do Laravel incluem:
-
-- **Estrutura MVC**: O Laravel segue o padrão arquitetural Model-View-Controller (MVC), que separa a lógica de negócios, a apresentação e a manipulação de dados em componentes independentes. Isso permite uma melhor organização e manutenção do código.
-
-- **ORM Eloquent**: O Laravel possui um ORM (Object-Relational Mapping) chamado Eloquent, que simplifica a interação com o banco de dados. Ele permite que você defina modelos PHP que mapeiam diretamente para tabelas do banco de dados, facilitando as operações de consulta, inserção, atualização e exclusão de registros.
-
-- **Sistema de Rotas**: O Laravel oferece um sistema de roteamento flexível e poderoso. Com ele, você pode definir facilmente as rotas para suas páginas, controladores e ações, tornando a navegação em seu aplicativo mais clara e intuitiva.
-
-- **Migrações de Banco de Dados**: O Laravel fornece migrações de banco de dados, permitindo que você defina e mantenha a estrutura do banco de dados em código. Isso facilita a colaboração entre desenvolvedores e a implantação consistente do esquema do banco de dados em diferentes ambientes.
-
-Este projeto utiliza o template Material Dashboard Pro Laravel da Creative-Tim, que fornece uma interface de usuário moderna e responsiva com componentes pré-estilizados. O uso desse template ajuda a acelerar o desenvolvimento, fornecendo um conjunto de recursos e estilos pré-configurados.
-
-Se tiver alguma dúvida ou feedback, não hesite em entrar em contato.
