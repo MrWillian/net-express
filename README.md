@@ -122,7 +122,5 @@ Este projeto inclui testes automatizados para garantir a qualidade e a estabilid
    ./vendor/bin/phpunit
    ```
 
-   Isso iniciará a execução dos testes e ex
-
-ibirá os resultados no terminal.
+Isso iniciará a execução dos testes e exibirá os resultados no terminal.
 
